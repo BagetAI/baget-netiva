@@ -36,6 +36,11 @@
         .triangle { clip-path: polygon(50% 0%, 0% 100%, 100% 100%); }
         .card-shadow { box-shadow: 8px 8px 0px 0px rgba(76, 29, 149, 0.1); }
         .safe-badge { background: #14B8A6; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; }
+        @keyframes pulse-soft {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+        .animate-pulse-soft { animation: pulse-soft 3s infinite ease-in-out; }
     </style>
 </head>
 <body class="bg-lavender text-violet font-karla overflow-x-hidden">
@@ -53,7 +58,6 @@
 
     <!-- Hero Section -->
     <header class="container mx-auto px-6 pt-12 pb-24 relative">
-        <!-- Geometric Accents -->
         <div class="geometric-shape circle bg-peach w-64 h-64 -top-20 -left-20"></div>
         <div class="geometric-shape triangle bg-teal w-48 h-48 bottom-10 right-10 rotate-12"></div>
 
@@ -63,7 +67,7 @@
                     Invest in Israel with <span class="text-teal underline decoration-peach">Zero Index Risk</span>.
                 </h1>
                 <p class="text-xl opacity-90 max-w-xl">
-                    Diaspora investors lose thousands to "Madad" (Construction Index) linkage. Netiva maps 20+ vetted "Safe-Build" projects with fixed prices and 0% index linkage.
+                    Diaspora investors lose thousands to "Madad" (Construction Index) linkage. Netiva maps vetted "Safe-Build" projects with fixed prices and 0% index linkage.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4">
                     <a href="#projects" class="bg-teal text-white px-8 py-4 rounded-xl font-sora font-bold text-center hover:scale-105 transition shadow-lg">Browse Safe Projects</a>
@@ -75,8 +79,7 @@
                 <div class="rounded-3xl overflow-hidden shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500">
                     <img src="https://storage.googleapis.com/brand-base-production/e883e49e-b764-4286-932d-304b8b64016b/ai-generated/6f88219c-8822-4934-8c87-cc390d407886.png" alt="Luxury Israeli Real Estate" class="w-full h-auto">
                 </div>
-                <!-- Float Card -->
-                <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl border-l-4 border-teal max-w-[200px] hidden md:block">
+                <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl border-l-4 border-teal max-w-[200px] hidden md:block animate-pulse-soft">
                     <p class="text-xs font-bold uppercase tracking-wider text-teal">Average Savings</p>
                     <p class="text-2xl font-sora font-bold">$45,000</p>
                     <p class="text-xs opacity-70 leading-tight">By avoiding standard index linkage on 80/20 contracts.</p>
@@ -85,109 +88,28 @@
         </div>
     </header>
 
-    <!-- Key Metrics -->
-    <section class="bg-violet text-white py-16 relative overflow-hidden">
-        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
-            <div>
-                <h3 class="text-4xl font-sora font-bold text-peach mb-2">20</h3>
-                <p class="font-semibold">Vetted Developments</p>
-                <p class="text-sm opacity-70">Strict Zero-Linkage or Capped-Index requirements.</p>
-            </div>
-            <div>
-                <h3 class="text-4xl font-sora font-bold text-teal mb-2">100%</h3>
-                <p class="font-semibold">Legal Compliance</p>
-                <p class="text-sm opacity-70">All projects support 2025 Independent Representation.</p>
-            </div>
-            <div>
-                <h3 class="text-4xl font-sora font-bold text-white mb-2">0%</h3>
-                <p class="font-semibold">Hidden Fees</p>
-                <p class="text-sm opacity-70">Verified 80/20 and 10/90 fixed-price structures.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Browser -->
+    <!-- Projects Browser (Dynamic) -->
     <section id="projects" class="py-24 bg-white relative">
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
                 <div>
                     <h2 class="text-4xl font-sora font-bold mb-4">The "Safe-Build" Index</h2>
-                    <p class="text-lg opacity-80 max-w-2xl">Vetted new-build developments in Jerusalem, Tel Aviv, and Netanya offering protection from construction cost volatility.</p>
+                    <p class="text-lg opacity-80 max-w-2xl">Verified developments in Jerusalem, Tel Aviv, and Netanya offering protection from construction cost volatility.</p>
                 </div>
-                <div class="flex gap-2">
-                    <span class="px-4 py-2 bg-lavender rounded-full text-xs font-bold">Jerusalem</span>
-                    <span class="px-4 py-2 bg-lavender rounded-full text-xs font-bold">Tel Aviv</span>
-                    <span class="px-4 py-2 bg-lavender rounded-full text-xs font-bold">Netanya</span>
+                <div id="project-count-badge" class="px-6 py-3 bg-lavender rounded-full text-sm font-bold border border-violet border-opacity-10">
+                    Loading Projects...
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project Card 1 -->
-                <div class="bg-lavender p-8 rounded-2xl card-shadow border border-violet border-opacity-10 hover:-translate-y-2 transition duration-300">
-                    <div class="flex justify-between items-start mb-4">
-                        <span class="safe-badge uppercase">Gold Standard</span>
-                        <span class="text-sm font-bold opacity-60">Jerusalem</span>
-                    </div>
-                    <h3 class="text-2xl font-sora font-bold mb-2">Savyon View</h3>
-                    <p class="text-sm mb-6 opacity-80">Africa Israel | City Center</p>
-                    <div class="space-y-3 mb-8">
-                        <div class="flex items-center gap-2">
-                            <div class="w-2 h-2 rounded-full bg-teal"></div>
-                            <span class="text-sm font-bold">0% Index Linkage</span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <div class="w-2 h-2 rounded-full bg-teal"></div>
-                            <span class="text-sm font-bold">20/80 Structure</span>
-                        </div>
-                    </div>
-                    <a href="#guide" class="block text-center py-3 bg-violet text-white rounded-xl font-bold hover:bg-opacity-90 transition">View Safety Audit</a>
-                </div>
-
-                <!-- Project Card 2 -->
-                <div class="bg-lavender p-8 rounded-2xl card-shadow border border-violet border-opacity-10 hover:-translate-y-2 transition duration-300">
-                    <div class="flex justify-between items-start mb-4">
-                        <span class="safe-badge uppercase">Silver Standard</span>
-                        <span class="text-sm font-bold opacity-60">Netanya</span>
-                    </div>
-                    <h3 class="text-2xl font-sora font-bold mb-2">Dimri YAMA</h3>
-                    <p class="text-sm mb-6 opacity-80">Y.H. Dimri | Ir Yamim</p>
-                    <div class="space-y-3 mb-8">
-                        <div class="flex items-center gap-2">
-                            <div class="w-2 h-2 rounded-full bg-teal"></div>
-                            <span class="text-sm font-bold">10/90 Payment Option</span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <div class="w-2 h-2 rounded-full bg-teal"></div>
-                            <span class="text-sm font-bold">Capped Madad</span>
-                        </div>
-                    </div>
-                    <a href="#guide" class="block text-center py-3 bg-violet text-white rounded-xl font-bold hover:bg-opacity-90 transition">View Safety Audit</a>
-                </div>
-
-                <!-- Project Card 3 -->
-                <div class="bg-lavender p-8 rounded-2xl card-shadow border border-violet border-opacity-10 hover:-translate-y-2 transition duration-300">
-                    <div class="flex justify-between items-start mb-4">
-                        <span class="safe-badge uppercase">Gold Standard</span>
-                        <span class="text-sm font-bold opacity-60">Tel Aviv</span>
-                    </div>
-                    <h3 class="text-2xl font-sora font-bold mb-2">The First</h3>
-                    <p class="text-sm mb-6 opacity-80">Sde Dov Partners | Sde Dov</p>
-                    <div class="space-y-3 mb-8">
-                        <div class="flex items-center gap-2">
-                            <div class="w-2 h-2 rounded-full bg-teal"></div>
-                            <span class="text-sm font-bold">Fixed Price Contracts</span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <div class="w-2 h-2 rounded-full bg-teal"></div>
-                            <span class="text-sm font-bold">International Desk Support</span>
-                        </div>
-                    </div>
-                    <a href="#guide" class="block text-center py-3 bg-violet text-white rounded-xl font-bold hover:bg-opacity-90 transition">View Safety Audit</a>
-                </div>
+            <div id="project-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Skeleton Loading -->
+                <div class="animate-pulse bg-lavender p-8 rounded-2xl h-80"></div>
+                <div class="animate-pulse bg-lavender p-8 rounded-2xl h-80"></div>
+                <div class="animate-pulse bg-lavender p-8 rounded-2xl h-80"></div>
             </div>
             
             <div class="mt-16 text-center">
-                <button onclick="document.getElementById('guide').scrollIntoView({behavior: 'smooth'})" class="text-violet font-bold border-b-2 border-peach pb-1 hover:text-teal hover:border-teal transition">Download the full list of 20 developments</button>
+                <button onclick="document.getElementById('guide').scrollIntoView({behavior: 'smooth'})" class="text-violet font-bold border-b-2 border-peach pb-1 hover:text-teal hover:border-teal transition">Unlock full 2026 developer list</button>
             </div>
         </div>
     </section>
@@ -273,6 +195,47 @@
     </footer>
 
     <script>
+        const PROJECTS_DB = 'f7cfb42b-1fc7-497e-a49b-3443deffffa4';
+        const LEADS_DB = 'a77d7d62-dee2-413d-a3c5-6543b7ef0c98';
+
+        async function loadProjects() {
+            const grid = document.getElementById('project-grid');
+            const badge = document.getElementById('project-count-badge');
+            
+            try {
+                const response = await fetch(`https://app.baget.ai/api/public/databases/${PROJECTS_DB}/rows`);
+                const data = await response.json();
+                const projects = data.rows;
+                
+                badge.innerText = `${projects.length} Verified Projects`;
+                
+                grid.innerHTML = projects.map(p => `
+                    <div class="bg-lavender p-8 rounded-2xl card-shadow border border-violet border-opacity-10 hover:-translate-y-2 transition duration-300 flex flex-col h-full">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="safe-badge uppercase">${p.safety_tier || 'Verified'}</span>
+                            <span class="text-sm font-bold opacity-60">${p.location}</span>
+                        </div>
+                        <h3 class="text-2xl font-sora font-bold mb-2">${p.project_name}</h3>
+                        <p class="text-sm mb-4 opacity-80">${p.developer}</p>
+                        <div class="space-y-3 mb-8 flex-grow">
+                            <div class="flex items-center gap-2">
+                                <div class="w-2 h-2 rounded-full bg-teal"></div>
+                                <span class="text-sm font-bold">${p.index_status}</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-2 h-2 rounded-full bg-violet"></div>
+                                <span class="text-sm opacity-90">${p.price_range}</span>
+                            </div>
+                            <p class="text-xs italic opacity-70 mt-4 leading-snug">${p.description}</p>
+                        </div>
+                        <button onclick="document.getElementById('guide').scrollIntoView({behavior: 'smooth'})" class="block w-full text-center py-3 bg-violet text-white rounded-xl font-bold hover:bg-opacity-90 transition">View Safety Audit</button>
+                    </div>
+                `).join('');
+            } catch (err) {
+                grid.innerHTML = '<p class="text-center col-span-full py-12 opacity-50">Error loading projects. Please refresh.</p>';
+            }
+        }
+
         document.getElementById('waitlist-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             const btn = document.getElementById('submit-btn');
@@ -285,35 +248,37 @@
             btn.innerText = 'Sending...';
             
             try {
-                const response = await fetch('https://app.baget.ai/api/public/databases/433890f8-c241-4c6c-82ec-842273e884ec/rows', {
+                const response = await fetch(`https://app.baget.ai/api/public/databases/${LEADS_DB}/rows`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         data: {
                             name: name,
                             email: email,
-                            location_preference: location,
+                            region: location,
                             source: 'landing_page_guide'
                         }
                     })
                 });
                 
                 if (response.ok) {
-                    msg.innerText = 'Success! Check your inbox for the guide.';
+                    msg.innerText = 'Success! Guide link sent to your email.';
                     msg.classList.remove('hidden', 'text-red-500');
                     msg.classList.add('text-teal');
-                    btn.innerText = 'Sent!';
+                    btn.innerText = 'Check Inbox';
                 } else {
                     throw new Error('Submission failed');
                 }
             } catch (err) {
-                msg.innerText = 'Error saving. Please try again.';
+                msg.innerText = 'Submission error. Please try again.';
                 msg.classList.remove('hidden', 'text-teal');
                 msg.classList.add('text-red-500');
                 btn.disabled = false;
                 btn.innerText = 'Retry Download';
             }
         });
+
+        loadProjects();
     </script>
 </body>
 </html>
